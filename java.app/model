@@ -1,0 +1,62 @@
+package com.banking.model;
+
+import java.time.LocalDateTime;
+
+public class Transaction {
+
+    private Integer id; // важный момент — Integer, не int!
+    private double amount;
+    private String senderAccount;
+    private String receiverAccount;
+    private LocalDateTime timestamp;
+    private String description;
+
+    public Transaction() {}
+
+    // Конструктор без id (используется Mongo или общий случай)
+    public Transaction(double amount, String senderAccount, String receiverAccount,
+                       LocalDateTime timestamp, String description) {
+        this.amount = amount;
+        this.senderAccount = senderAccount;
+        this.receiverAccount = receiverAccount;
+        this.timestamp = timestamp;
+        this.description = description;
+    }
+
+    // Конструктор с id (используется PostgreSQL)
+    public Transaction(int id, double amount, String senderAccount, String receiverAccount,
+                       LocalDateTime timestamp, String description) {
+        this(amount, senderAccount, receiverAccount, timestamp, description);
+        this.id = id;
+    }
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
+
+    public String getSenderAccount() { return senderAccount; }
+    public void setSenderAccount(String senderAccount) { this.senderAccount = senderAccount; }
+
+    public String getReceiverAccount() { return receiverAccount; }
+    public void setReceiverAccount(String receiverAccount) { this.receiverAccount = receiverAccount; }
+
+    public LocalDateTime getTimestamp() { return timestamp; }
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", senderAccount='" + senderAccount + '\'' +
+                ", receiverAccount='" + receiverAccount + '\'' +
+                ", timestamp=" + timestamp +
+                ", description='" + description + '\'' +
+                '}';
+    }
+}
